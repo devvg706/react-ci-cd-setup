@@ -1,0 +1,25 @@
+name: "sample react pipeline/workflow"
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  bulid and test:
+    runs-on: ubuntu latest
+
+    steps:
+      - name: "setup node js"
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21'
+        
+        
+
+
+      - name: "check node version"
+        run: node --version
+        
+
