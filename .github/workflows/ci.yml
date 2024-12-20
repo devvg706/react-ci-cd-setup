@@ -7,10 +7,10 @@ on:
       - main
 
 jobs:
-  bulid and test:
-    runs-on: ubuntu latest
+  build-and-test:
+      runs-on: ubuntu latest
 
-    steps:
+      steps:
       - name: "setup node js"
         uses: actions/setup-node@v4
         with:
