@@ -1,3 +1,15 @@
+#this is the ci pipeline in which we did the following things:-
+ #1:-we install and setup node js in our github runner machine
+ #2:-we checked the node js version we installed
+ #3:-we cloned the repository (in this we are cloning our repo in github runner machine)
+ #4:-listing all the directories for checking what was downloaded when we ran the install dependenciess command (no node module folder present)
+ #5:-we are installing dependencies
+ #6:-checking what we installed (node module will)
+ #7:-we run lint test
+ #8:-we run some other test
+ #9:-then we use the artifacts to upload 'dist' file
+ 
+ 
 name: "sample react pipeline/workflow"
 
 on:
@@ -21,5 +33,50 @@ jobs:
 
       - name: "check node version"
         run: node --version
+
+
+      - name: "clone the repository"
+        uses: actions/checkout@v4
+
+
+      - name: "list directories"
+        run: ls
+
+
+
+      - name: "install dependencies"
+        run: npm install
+
+
+
+      - name: "list directories"
+        run: ls
+#linting is the test done for checking the errors in the code orientation/programming errors for ensuring error free code
+      - name: "run lint"
+        run: npm run lint
+
+
+#When you run npm test, npm looks for a test script defined in the 'scripts' field of the package.json file.
+#{
+#  "scripts": {
+#   "test": "mocha"
+#  }
+#}
+
+
+      - name: "run tests"
+        run: npm test
+
+
+      - name: "run build"
+        run: npm run build
+
+      
+      - name: "upload product-ready build files"
+        uses: actions/upload-artifact@v4
+        with:
+          name: "build"
+          path: dist
+       
         
 
